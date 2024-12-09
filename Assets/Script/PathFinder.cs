@@ -9,6 +9,7 @@ public class PathFinder : MonoBehaviour
     List<Transform> waypoints;
     int waypointIndex = 0;
     
+    
     void Awake()
     {
         enemySpawner = FindObjectOfType<EnemySpawner>();
@@ -30,18 +31,19 @@ public class PathFinder : MonoBehaviour
     private void FollowPath()
     {
         if (waypointIndex < waypoints.Count)
-        {
-            Vector3 targetPosition = waypoints[waypointIndex].position;
-            float delta = waveConfig.GetMoveSpeed() * Time.deltaTime;
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, delta);
-            if (transform.position == targetPosition)
             {
-                waypointIndex++;
+                Vector3 targetPosition = waypoints[waypointIndex].position;
+                float delta = waveConfig.GetMoveSpeed() * Time.deltaTime;
+                transform.position = Vector2.MoveTowards(transform.position, targetPosition, delta);
+                if (transform.position == targetPosition)
+                {
+                    waypointIndex++;
+                }
             }
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+            else
+            {
+                Destroy(gameObject);
+            }
+        
     }
 }
